@@ -1,12 +1,17 @@
 aiogram==3.4.1
-requests==2.31.0
-beautifulsoup4==4.12.3
-html2text==2024.2.26
 
-langchain==0.1.4
-langchain-openai==0.0.5
-faiss-cpu==1.13.2
-tiktoken==0.5.2
-openai==1.10.0
+requests
+beautifulsoup4
+html2text
 
-python-dotenv==1.0.1
+langchain-community
+langchain-openai
+langchain-core
+langchain-text-splitters
+langsmith
+
+faiss-cpu
+tiktoken
+openai
+
+python-dotenv
