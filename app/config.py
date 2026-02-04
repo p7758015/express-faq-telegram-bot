@@ -13,6 +13,7 @@ load_dotenv(BASE_DIR / ".env")
 class Settings:
     openai_api_key: str | None = os.getenv("OPENAI_API_KEY")
     llm_provider: str = os.getenv("LLM_PROVIDER", "openai")  # openai | yandex | mock
+    bot_token: str | None = os.getenv("BOT_TOKEN")
 
     data_dir: Path = BASE_DIR / "data"
     raw_faq_path: Path = BASE_DIR / "data" / "raw_faq.json"

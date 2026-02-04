@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import List
+from typing import List, Tuple
 
 from langchain_core.documents import Document
 from langchain_community.vectorstores import FAISS
@@ -11,11 +11,14 @@ from .kb import load_faiss_index
 
 
 SYSTEM_PROMPT = (
-    "Ты — ассистент службы доставки Express.ru. "
-    "Отвечай только на основе предоставленного контекста FAQ. "
-    "Отвечай кратко, по-деловому, на русском языке. "
-    "Если в контексте нет ответа, честно скажи, что в FAQ об этом не сказано."
+    "Ты — ассистент службы доставки Express.ru.\n"
+    "Отвечай только на основе предоставленного контекста FAQ.\n"
+    "Если в контексте нет нужной информации, отвечай строго:\n"
+    "«Эта тема не входит в мою компетенцию как FAQ‑бота. "
+    "Пожалуйста, обратитесь на горячую линию Express.ru или в поддержку на сайте.»\n"
+    "Отвечай кратко, по-деловому, на русском языке."
 )
+
 
 
 class ExpressRAG:
@@ -59,3 +62,43 @@ class ExpressRAG:
 
         resp = self.llm.invoke(messages)
         return resp.content
+
+    def answer_with_docs(self, query: str) -> Tuple[str, List[Document]]:
+        docs = self.retrieve(query, k=6)
+        context = self.build_context(docs)
+
+        messages = [
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {
+                "role": "user",
+                "content": (
+                    "Контекст FAQ:\n"
+                    f"{context}\n\n"
+                    "Вопрос пользователя:\n"
+                    f"{query}"
+                ),
+            },
+        ]
+
+        resp = self.llm.invoke(messages)
+        return resp.content, docs
+
+    # def answer(self, query: str) -> str:
+    #     docs = self.retrieve(query, k=6)
+    #     context = self.build_context(docs)
+    #
+    #     messages = [
+    #         {"role": "system", "content": SYSTEM_PROMPT},
+    #         {
+    #             "role": "user",
+    #             "content": (
+    #                 "Контекст FAQ:\n"
+    #                 f"{context}\n\n"
+    #                 "Вопрос пользователя:\n"
+    #                 f"{query}"
+    #             ),
+    #         },
+    #     ]
+    #
+    #     resp = self.llm.invoke(messages)
+    #     return resp.content
