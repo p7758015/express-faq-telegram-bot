@@ -59,17 +59,17 @@ OPENAI_API_KEY=sk-...      # ключ OpenAI (НЕ коммитить)
 LLM_PROVIDER=openai        # пока используется openai
 BOT_TOKEN=1234567890:ABC...# токен Telegram‑бота (НЕ коммитить)
 Файл .env должен быть в .gitignore и не попадать в репозиторий.
+```
 
-```markdown
 # Подготовка данных
 
 ### Скачать и распарсить FAQ:
 
 ```bash
 python -m scripts.scrape_faq
-```
 
 В результате появится `data/raw_faq.json`.
+```
 
 ### Построить векторную базу (FAISS):
 
@@ -157,3 +157,4 @@ python -m scripts.run_bot
 - Фильтрация по дате, пользователю, ключевым словам.
 - Экспорт логов в CSV/Excel.
 ```
+
