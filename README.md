@@ -53,9 +53,9 @@ python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 ```
 
-#Переменные окружения
+# Переменные окружения
 Создайте файл .env в корне проекта (рядом с requirements.txt):
-
+```bash
 text
 OPENAI_API_KEY=sk-...      # ключ OpenAI (НЕ коммитить)
 LLM_PROVIDER=openai        # пока используется openai
@@ -158,6 +158,7 @@ python -m scripts.run_bot
 - Небольшой web-интерфейс (FastAPI) для просмотра `dialog_logs`.
 - Фильтрация по дате, пользователю, ключевым словам.
 - Экспорт логов в CSV/Excel.
+
 
 
 
