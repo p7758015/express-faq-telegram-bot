@@ -75,9 +75,9 @@ python -m scripts.scrape_faq
 
 ```bash
 python -m scripts.build_kb
-```
 
 Индекс будет сохранён в `data/faiss/`.
+```
 
 ### (Опционально) протестировать CLI‑ассистента:
 
@@ -156,5 +156,6 @@ python -m scripts.run_bot
 - Небольшой web-интерфейс (FastAPI) для просмотра `dialog_logs`.
 - Фильтрация по дате, пользователю, ключевым словам.
 - Экспорт логов в CSV/Excel.
-```
+
+
 
