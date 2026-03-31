@@ -48,10 +48,11 @@ AI-сервис автоматически отвечает на вопросы 
 
 ## Architecture
 
+```bash
 User → Telegram Bot → RAG Backend → FAISS (vector search) → LLM
 ↓
 SQLite (логи)
-
+```
 ---
 
 ## Key Features
